@@ -1,0 +1,15 @@
+.amazon-btn {
+    background-color: rgb(255,216,20);
+    padding: 10px 40px;
+    border: none;
+    border-radius: 20px;
+}
+
+.toggle {
+    background-color: black;
+    color: aliceblue;
+    border: none;
+    padding:15px 40px;
+    border-radius: 15px;
+    cursor: pointer;   
+}

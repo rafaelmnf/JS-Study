@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercises</title>
+    <script defer src="practicing.js"></script>
+    <link rel="stylesheet"  href="practicing.css">
+</head>
+<body>
+    <!--
+    <button>9a</button>
+    <button class="js-b9b">9b</button>
+    <button class="heads" onclick="play('heads')">Heads</button>
+    <button class="tails" onclick="play('tails')">Tails</button>
+    <p class="hort"></p>
+    -->
+    <input placeholder="Name" type="search" class="js-name" onkeydown="submitEnter(event)">
+    <button onclick="submit()">Submit</button>
+    <p class="js-display-name"></p>
+
+    <p>Show Typing</p>
+    <!-- onkeyup runs code after someone press a key and release it -->
+    <input type="search" id="show-typing" onkeyup="
+    let input = document.querySelector('#show-typing').value;
+    document.querySelector('.typed').innerHTML = input; 
+    ">
+    <p class="typed"></p>
+
+    <button class="amazon-btn">Add to Cart</button>
+
+    <button class="js-button">Test</button>
+
+    <button class="toggle js-toggle">OFF</button>
+</body>
+</html>

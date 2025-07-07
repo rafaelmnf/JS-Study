@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <button>Hello</button>
+    <button class="js-button">Sup</button>
+
+    <script>
+        /* Built-in Objects (objects provided by JavaScript)
+            Ex: console, Math, JSON, localStorage, DOM(document object)
+        document -> body -> inner means "interno"
+        document.body.innerHTML = 'hello';
+        The DOM combines JS and HTML together, a HTML element is converted into a JS object
+        console.log(typeof document.body); // object
+        */
+        /*
+        console.log(document.title);
+        document.title = "Changed";
+            //innerHTML controls all the HTML inside the element
+        document.body.innerHTML
+        console.log(document.body.innerHTMl);
+        document.body.innerHTML = '<button>Good job</button>'
+        console.log(document.body); */
+
+        //when using for a non specified element, it will return the first one it finds
+        console.log(document.querySelector('button').innerHTML);
+        document.querySelector('button').innerHTML = 'New Button';
+
+        
+        const buttonElement = document.querySelector('.js-button');
+        console.log(buttonElement);
+
+        const elementos = document.querySelectorAll(".minhaClasse"); // Seleciona todos os elementos com essa classe, diferente de sem "All", que só pega o primeiro
+
+        const elemento = document.getElementById("meuId"); // Seleciona um ID (mais rápido que querySelector)
+
+        const outrosElementos = document.getElementsByClassName("minhaClasse");
+
+        const divs = document.getElementsByTagName("div"); // Seleciona todas as <div>
+
+        
+        
+    </script>
+</body>
+</html>
