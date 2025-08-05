@@ -56,4 +56,38 @@ comparePrice(product1, product2);
 
     const on_off = document.querySelector('.toggle');
     
-    document.getElementByClass
+    //  exercise 11m
+    let nums = [1,2,-21,-4,4];
+    
+    function minMax(nums) {
+        // if array has more than just one element, than, show them to the user, otherwise, shows a error message
+        if(nums.length > 1){
+        /* if we inicialize the min and max as the first index of the array, it will be always a number of the array or none.
+        */
+        const result = {
+            min: nums[0],
+            max: nums[0]
+        }
+        
+        for(let i=0; i < nums.length; i++) {
+            if (result.min > nums[i]){
+                result.min = nums[i];
+            }
+
+            if (result.max < nums[i]){
+                result.max = nums[i];
+            }
+
+        }
+
+            console.log(result);
+            return result;
+
+            } else {
+                console.log('error');
+            }
+    
+    }
+
+
+    minMax(nums);
