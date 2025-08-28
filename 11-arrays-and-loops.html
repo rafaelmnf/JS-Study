@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays and Loops Learning</title>
+</head>
+<body>
+    <script>
+
+        // const myArray = [1,2,3];
+        // // já que array é tipo um objeto, ele tem propriedades e metodos
+        // const object = [1, 'hello', true, { name: 'socks', num: 2 } , [1, 2]];
+        // console.log(object[3]);
+        
+        // // metodos:
+        // console.log(myArray.length);
+        // // add something to the end of the array
+        // myArray.push(100);
+        
+        // // In splice, the first is the index we want to remove, and the second is  the number of values to remove, starting at the index
+        // myArray.splice(0, 2);
+        // console.log(myArray);
+        // OBS* The third ',', you can add elements directly in the array:
+        // let arr = [1, 2, 3, 4];
+        // arr.splice(1, 2, 9, 10); --> [1, 9, 10, 4]
+
+        /* OUTROS METODOS DE MANIPULAÇÃO DE VETORES:
+        //remove o último elemento e retorna ele 
+        let arr = [1, 2, 3];
+        let ultimo = arr.pop();  // ultimo = 3 → [1, 2]
+
+        //adiciona no começo
+        let arr = [1, 2];
+        arr.unshift(0);  // [0, 1, 2]
+        
+        //remove o primeiro elemento
+        let arr = [0, 1, 2];
+        let primeiro = arr.shift();  // primeiro = 0 → [1, 2]
+
+        //Procura dentro do vetor
+        indexOf(valor) → retorna o índice do valor ou -1 se não achar.
+        includes(valor) → retorna true ou false.
+        find(callback) → retorna o primeiro elemento que atende a condição.
+        findIndex(callback) → retorna o índice do elemento que atende a condição.
+        */
+       
+        /*
+        //LOOPS in JS
+        const todoList = ['rafa', 'vini', 'tiago'];
+        // length minus 1 because it starts at '0';
+
+        for (let index = 0; index < todoList.length; index++) {
+            console.log(todoList[index]);
+        }
+        */
+        
+        const nums = [1,1,3];
+        const numDubled = [];
+
+        for (let i = 0; i < nums.length; i++) {
+            numDubled[i] = nums[i]*2; 
+            // or -> numDubled.push(nums[i]*2)
+        }
+        console.log(numDubled);
+
+        </script>
+</body>
+</html>

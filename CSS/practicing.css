@@ -13,3 +13,12 @@
     border-radius: 15px;
     cursor: pointer;   
 }
+
+.is-toggled {
+    background-color: rgb(204, 204, 204);
+    color: black;
+    border: none;
+    padding:15px 40px;
+    border-radius: 15px;
+    cursor: pointer;   
+}

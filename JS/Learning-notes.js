@@ -187,7 +187,7 @@ EX: using console.log(), you are already using this method -> console is the obj
 */
 
 /*Falsy Values -> false, 0, '', null, undefined, NaN
-Any value not on this list is truthy
+Any value not on this list IS TRUTHY
     EX: if(0) {
         console.log('truthy');
     } //it wont appear on the console because 0 is a falsy value
