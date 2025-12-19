@@ -9,6 +9,14 @@ document.getElementById('resetScore').addEventListener('click', () => {
     localStorage.removeItem('score');
     //The score now is null
 });
+
+/* Ao uma função sem parâmetros, usamos o evento click, e logo a referência da função, a qual
+ o objeto event é chamado automaticamente. Como é referência, não pode passar parâmetros na função chamada
+ document.querySelector('.js-btn-addTodo').addEventListener('click', addTodo);
+
+ Já aqui, onde passamos um parâmetro para a função chamada, logo ao clicar, o navegador executa a arrow function e dentro dela, chama a função playGame passando os parâmetros.
+ document.getElementById("rock").addEventListener("click", () => playGame('rock')); 
+/*
     
 //The getItem method gets a value out of a localStorage
 let score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0, ties: 0 };
@@ -87,6 +95,13 @@ function playGame(playerMove) {
     alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result} \n Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
 }
 
+
+// // In splice, the first is the index we want to remove, and the second is the number of values to remove, starting at the index
+        // myArray.splice(0, 2);
+        // console.log(myArray);
+        // OBS* The third ',', you can add elements directly in the array:
+        // let arr = [1, 2, 3, 4];
+        // arr.splice(1, 2, 9, 10); --> [1, 9, 10, 4]
 
 /* 
 Short Cuts for Objects:
