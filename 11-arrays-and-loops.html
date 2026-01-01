@@ -14,16 +14,15 @@
         // console.log(object[3]);
         
         // // metodos:
-        // console.log(myArray.length);
+        //.reverse() --> reverses the order of the values in the array
         // // add something to the end of the array
         // myArray.push(100);
         
         // // In splice, the first is the index we want to remove, and the second is the number of values to remove, starting at the index
         // myArray.splice(0, 2);
-        // console.log(myArray);
         // OBS* The third ',', you can add elements directly in the array:
-        // let arr = [1, 2, 3, 4];
-        // arr.splice(1, 2, 9, 10); --> [1, 9, 10, 4]
+         let arr = [1, 2, 3, 4];
+         arr.splice(1, 2, 9, 10); // --> [1, 9, 10, 4]
 
         /* OUTROS METODOS DE MANIPULAÇÃO DE VETORES:
         //remove o último elemento e retorna ele 
@@ -68,11 +67,29 @@
         // relembrando que arrays são referencias de memoria
         // então, ele é tipo um ponteiro que guarda o endereço dos itens dentro dele
         const array1 = [1,2,3];
-        const array2 = array.slice(); // agora cria uma cópia dos numeros, logo, um vetor diferente
+        const array2 = array1.slice(); // agora cria uma cópia dos numeros, logo, um vetor diferente
         array2.push(4);
         console.log(array1);
         console.log(array2);
         // se n tivesse o slice, eles dariam na mesma
+
+        // é possível aderir valores de variaveis diretamente (destructuring):
+        const array3 = [1,2,3];
+        const [firsValue, secondValue] = [array3[0], array3[2]];
+        console.log(firsValue);
+        console.log(secondValue);
+
+        // LOOPS (continue and break)
+        for (let i = 1; i <= 10; i ++) {
+            if (i === 3) {
+                continue; // skips 1 iteration
+            }
+            console.log(i);
+            if (i === 8) {
+                break; // exit a loop
+            }
+        }
+
         </script>
 </body>
 </html>

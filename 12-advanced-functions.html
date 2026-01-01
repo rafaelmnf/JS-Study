@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Functions</title>
+</head>
+<body>
+    
+
+    <script>
+
+        /* No JavaScript, caso precisemos usar a função sem ela ser inicializada como uma variavel, ou seja, normal: "function xx ()""
+           Melhor utiliza-la nesse padrão normal, visto que em JS as funções podem ser chamadas no começo do programa, ou seja, onde quer que 
+           voce escreva elas, elas já podem funcionar corretamente */
+
+        // functions is a type of a variable, so::
+        // This is an anonymous function (without a name), so we don't need a name if we're creating a function variable.
+        const function1 = function() {
+            console.log('hello');
+        };
+
+        console.log(function1);
+        console.log(typeof function1);
+        function1()
+
+    </script>  
+</body>
+</html>

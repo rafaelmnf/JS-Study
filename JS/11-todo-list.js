@@ -1,15 +1,13 @@
 document.querySelector('.js-btn-addTodo').addEventListener('click', addTodo);
 
 // Now it is an object Array
-const todoList = [
+// Gets list from local storage or a standard text
+const todoList = JSON.parse(localStorage.getItem('todoList')) || [
     {
         name: 'make dinner',
         dueDate: '2025-12-19'
     }
 ];
-
-// const todoListTxt = document.querySelector('.input-text');
-// let i = 0;
 
 
 // We need a render function to always update html
@@ -30,7 +28,9 @@ function renderTodoList() {
         <button class="dlt-btn" onclick = "
             todoList.splice(${i}, 1); 
             renderTodoList();
-        ">Delete</button>
+            // Whenever we update the todo list, save in localStorage.
+            localStorage.setItem('todoList', JSON.stringify(todoList));
+        " > Delete </button>
         `;
     }
 
@@ -53,8 +53,8 @@ function addTodo() {
 
     inputElement.value = ''; 
     renderTodoList();
-
-    // todoListTxt.innerHTML += `${todoList[i]}, `
-    // i++;
+    
+    // Whenever we update the todo list, save in localStorage.
+    localStorage.setItem('todoList', JSON.stringify(todoList));
 }
 
