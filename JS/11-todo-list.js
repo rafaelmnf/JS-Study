@@ -7,10 +7,12 @@ const todoList = [
         dueDate: '2025-12-19'
     }
 ];
+
 // const todoListTxt = document.querySelector('.input-text');
 // let i = 0;
 
 
+// We need a render function to always update html
 renderTodoList();
 
 function renderTodoList() {
@@ -21,15 +23,14 @@ function renderTodoList() {
     for (let i = 0; i < todoList.length; i++) {
         // Remove o elemento da lista e depois renderiza novamente o código sem ele
         // ${todoList[i].dueDate || ''}: Pode-se utilizar || nada, caso não tenha selecionado a data. Assim não aparecendo "undefined"
+        // 3 elements for the grid
         todoListHTML += `
-        <p>
-        ${todoList[i].name}
-        ${todoList[i].dueDate || ''} 
-        <button onclick = "
+        <p> ${todoList[i].name} </p>
+        <p> ${todoList[i].dueDate || ''} </p>
+        <button class="dlt-btn" onclick = "
             todoList.splice(${i}, 1); 
             renderTodoList();
-        "> Delete </button>
-        </p>
+        ">Delete</button>
         `;
     }
 
