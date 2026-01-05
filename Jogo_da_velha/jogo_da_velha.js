@@ -19,33 +19,35 @@
 
 // Adicionar um botao de reinicializar, resetado todas as cedulas com " "
 
-let c1 = document.querySelector("#cedula1");
-let c2 = document.querySelector("#cedula2");
-let c3 = document.querySelector("#cedula3");
-let c4 = document.querySelector("#cedula4");
-let c5 = document.querySelector("#cedula5");
-let c6 = document.querySelector("#cedula6");
-let c7 = document.querySelector("#cedula7");
-let c8 = document.querySelector("#cedula8");
-let c9 = document.querySelector("#cedula9");
+const cedulas = [];
+let end = 1;
 
-c1.addEventListener("click",() => playGame(c1));
-c2.addEventListener("click",() => playGame(c2));
-c3.addEventListener("click",() => playGame(c3));
-c4.addEventListener("click",() => playGame(c4));
-c5.addEventListener("click",() => playGame(c5));
-c6.addEventListener("click",() => playGame(c6));
-c7.addEventListener("click",() => playGame(c7));
-c8.addEventListener("click",() => playGame(c8));
-c9.addEventListener("click",() => playGame(c9));
+for (let i = 1; i <= 9; i++) {
+  cedulas.push(document.querySelector(`#cedula${i}`));
+}
+
+for (let i = 0; i < cedulas.length; i++) {
+  cedulas[i].addEventListener("click", () => playGame(cedulas[i]));
+}
 
 
 function playGame(posicao) {
+    result = verifyWinner(cedulas);
+    if (result === 1) { return; }
+    for (let i = 0; i < cedulas.length; i++) {
+        // se alguma cedula tiver em branco ainda, retorna 0
+        if(cedulas[i].innerHTML === '') { 
+            end = 0;
+        }
+        };
+        // Deu velha
+        if (end === 1) {
+            console.log('Deu velha')
+            return ;
+    }
     playerMove(posicao);
     computerMove();
-
 };
-
 
 function playerMove (cedula) {
 
@@ -58,25 +60,48 @@ function playerMove (cedula) {
     }
 }
 
-// function computerMove() {
-//     //pega um numero de 1 a 9 
-//     let random = Math.floor(Math.random() * 9 + 1);
-//     let cedula = document.querySelector(`#cedula${random}`);
-//     procuraCasa(cedula, random);
-//     //verifica se pode
-//     //se puder, encaixa a letra O no lugar, se não puder, procura dnv e testa dnv
-//     };
-        
-// function procuraCasa (cedula, random) {
-//         if (cedula.innerHTML === "" && !cedula.disabled)
-//         {
-//         cedula.innerHTML = 'O';
-//         cedula.disabled = true;
-//         return 0;
-//         } else {
-//             //troca valor do random e chama a fuçãonovamente 
-//             random = Math.floor(Math.random() * 10 + 1);
-//             cedula = document.querySelector(`#cedula${random}`);
-//             return procuraCasa(cedula, random);
-//         }
-//     };
+ function computerMove() {
+    //pega um numero de 1 a 9 
+    let random;
+    let cedula;
+
+    // se for diferente de X e não tiver sido desabilitada
+    while(true) {
+        // troca valor do random e faz denovo
+        random = Math.floor(Math.random() * 9 + 1);
+        cedula = document.querySelector(`#cedula${random}`);
+        if (cedula.innerHTML !== 'X' && !cedula.disabled) {
+            cedula.innerHTML = 'O';
+            cedula.disabled = true;
+            break; // stops the loop
+        }
+    }
+};
+
+function verifyWinner(cedulas) {
+    let winner;
+    const wins = [
+        [0,1,2],[3,4,5],[6,7,8],
+        [0,3,6],[1,4,7],[2,5,8],
+        [0,4,8],[2,4,6]
+    ];
+
+    for (const [a,b,c] of wins) {
+        if (
+            cedulas[a].innerHTML &&
+            cedulas[a].innerHTML === cedulas[b].innerHTML &&
+            cedulas[a].innerHTML === cedulas[c].innerHTML
+        ) {
+            winner = cedulas[a].innerHTML === 'X' ? 'player' : 'computer';
+            showMessage(winner)
+            return 1;
+        }
+    }
+    return 0;
+}
+
+function showMessage (winner) {
+    console.log(`Congrats ${winner}!`);
+}
+
+         

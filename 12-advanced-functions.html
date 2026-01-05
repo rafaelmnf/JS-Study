@@ -10,7 +10,7 @@
 
     <script>
 
-        /* No JavaScript, caso precisemos usar a função sem ela ser inicializada como uma variavel, ou seja, normal: "function xx ()""
+        /* No JavaScript, caso precisemos usar a função sem ela ser inicializada    como uma variavel, ou seja, normal: "function xx ()""
            Melhor utiliza-la nesse padrão normal, visto que em JS as funções podem ser chamadas no começo do programa, ou seja, onde quer que 
            voce escreva elas, elas já podem funcionar corretamente */
 
@@ -22,8 +22,23 @@
 
         console.log(function1);
         console.log(typeof function1);
-        function1()
+        function1();
 
-    </script>  
+        // We can pass a function inside another
+        function run(param) {
+            param();
+        }
+
+        run(function(){
+            console.log('hello2');
+        });
+
+        // setTimeout() allows us to run a function in the future (Asynchronous code)
+        // First param is the function, second is milliseconds to wait for (1000 mil = 1 sec)
+        setTimeout(function1, 3000);
+
+        // will keep running the function
+        setInterval(() => { console.log('interval');}, 3000)
+    </script>
 </body>
 </html>
