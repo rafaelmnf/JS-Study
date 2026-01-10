@@ -7,8 +7,21 @@
 </head>
 <body>
     
+    <button class="js-button">CLICK</button>
 
     <script>
+
+        const btnElement = document.querySelector('.js-button');
+        // addEventListener() -> run some code when interacting with the element
+        // First param is the event and the second is a function
+        // For passing a function into another function we use arrow function
+        const eventListener =  () => {
+            console.log('click');
+        }
+
+        btnElement.addEventListener('click', eventListener);
+
+        btnElement.removeEventListener('click', eventListener);
 
         /* No JavaScript, caso precisemos usar a função sem ela ser inicializada    como uma variavel, ou seja, normal: "function xx ()""
            Melhor utiliza-la nesse padrão normal, visto que em JS as funções podem ser chamadas no começo do programa, ou seja, onde quer que 
@@ -39,6 +52,24 @@
 
         // will keep running the function
         setInterval(() => { console.log('interval');}, 3000)
+
+        // forEach executa ua função para cada elemento, passando o elemento e o index se quiser
+        array = ["JS", "react", "three", "blender"];
+        array.forEach(function(value, index) {
+            console.log(value);
+            console.log(index);
+        });
+
+        const regularFunction = function(param, param2) {
+            console.log('sup');
+            return 5;
+        }
+
+        const arrowFunction = (param, param2) => {
+            console.log(param);
+            return 5;
+        }
+        arrowFunction('sup');
     </script>
 </body>
 </html>

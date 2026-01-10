@@ -133,3 +133,16 @@ comparePrice(product1, product2);
 
 
     minMax(nums);
+
+    let times = 2;
+
+    setInterval(() => {
+        if (document.title === 'App') {
+            document.title = `Changing ${times}...`;
+            times++;
+        }
+        else {
+            document.title = 'App';
+        }
+    }, 2000)
+ 

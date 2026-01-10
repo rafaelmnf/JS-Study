@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercises</title>
+    <title>App</title>
     <script defer src="JS/practicing.js"></script>
     <link rel="stylesheet"  href="CSS/practicing.css">
 </head>
@@ -34,6 +34,13 @@
     <button class="toggle" id="gaming">Gaming</button>
     <button class="toggle" id="music">Music</button>
     <button class="toggle" id="tech">Tech</button>
-    
+    <div></div>
+    <button class="wait1sec" onclick="
+        // setTimeout(function () {
+        //     document.querySelector('.wait1sec').innerHTML = 'Finished';
+        // }, 1000)
+        this.innerHTML = 'Loading...';
+        setTimeout(() => {this.innerHTML = 'Finished';} , 1000)
+    ">Start</button>
 </body>
 </html>
