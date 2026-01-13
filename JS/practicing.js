@@ -146,3 +146,14 @@ comparePrice(product1, product2);
         }
     }, 2000)
  
+    // Functions 
+    function addNum(array, num) {
+        return array.map(value => value + num);
+    }
+
+    console.log(addNum([1,2,3], 2));
+
+    function removeEgg(foods) {
+        return foods.filter((food) => { return food === 'egg' ? false : true } )                                                                                     
+    }
+    console.log(removeEgg(['egg','apple','egg', 'egg', 'ham']));

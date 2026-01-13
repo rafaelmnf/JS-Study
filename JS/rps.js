@@ -10,6 +10,12 @@ document.getElementById('resetScore').addEventListener('click', () => {
     updateScore();
 });
 document.querySelector('.auto-play-button').addEventListener('click', autoplay);
+document.body.addEventListener('keydown', (event) => {
+    if (event.key === 'a') {
+        autoplay();
+    }
+});
+
 
 // Key is the name of key (tecla)
 document.body.addEventListener('keydown', (event) => {
@@ -103,9 +109,11 @@ function autoplay() {
         // setInterval returns a number (id)
         intervalId = setInterval(() => playGame(randomMove()), 1000);
         isAutoPlaying = true;
+        document.querySelector('.auto-play-button').innerHTML = 'Stop Playing';
     } else {
         clearInterval(intervalId);
         isAutoPlaying = false;
+        document.querySelector('.auto-play-button').innerHTML = 'Auto Play'
     }
     // arrow function é chamada primeiro, pq se n nao funciona, já que passa a referencia da função
     // O primeiro argumento TEM que ser uma função, não o resultado de uma função.
