@@ -28,23 +28,23 @@ products.forEach((product) => {
             </div>
 
             <div class="product-quantity-container">
-                <select>
-                <option selected value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
+                <select class="js-quantity-selector-${product.id}">
+                    <option selected value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
                 </select>
             </div>
 
             <div class="product-spacer"></div>
 
-            <div class="added-to-cart">
+            <div class="added-to-cart js-added-to-cart-${product.id}">
                 <img src="images/icons/checkmark.png">
                 Added
             </div>
@@ -57,32 +57,39 @@ products.forEach((product) => {
     `;
 })
 
-// product-id == productId, o DOM junta na hora de identificá-lo como objeto
-
 document.querySelector('.products-grid').innerHTML = productsHtml;
 
+
+const addedMessageTimeouts = {};
 // make a list of all btns with that class, then iterates for all btn to when clicking, do something
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
-        // DATASET gives us all the data attributes of button
+
+        // DATASET gives us all the data attributes of button, we use it to specify which button we are using
         console.log(button.dataset);
-        const productID = button.dataset.productId
+        // product-id == productId, o DOM junta na hora de identificá-lo como objeto
+        const productId = button.dataset.productId;
 
         // we create this variable to verify if has item or not (undefined if not)
         let matchingItem;
 
         cart.forEach((item) => {
-            if (productID === item.productID) {
+            if (productId === item.productID) {
                 matchingItem = item;
             }
         })
 
+        // We have to convert the string value from DOM to a number
+        const quantitySelector = document.querySelector(
+        `.js-quantity-selector-${productId}`);
+        const quantity = Number(quantitySelector.value);
+
         if(matchingItem) {
-            matchingItem.quantity ++;
+            matchingItem.quantity += quantity;
         } else {
             cart.push({
-            productID: productID,
-            quantity: 1
+            productID: productId,
+            quantity: quantity
         })
         }
         
@@ -95,6 +102,29 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
         })
 
         document.querySelector('.cart-quantity').innerHTML = cartQnt;
+
+        const addedHTML = document.querySelector(`.js-added-to-cart-${productId}`);
+        addedHTML.classList.add('added-show');
+
+        // When selecting by [], you get the content of variable
+        const previousTimeoutId = addedMessageTimeouts[productId];
+
+        // undefined or the number of timeoutId
+        if (previousTimeoutId) {
+        clearTimeout(previousTimeoutId);
+      }
+
+        // gets the id number of that timeout (every click new timerId)
+        const timeoutId = setTimeout(() => {
+            addedHTML.classList.remove('added-show');
+        }, 2000);
+
+        // Save the timeoutId for this product
+        // so we can stop it later if we need to.
+        // addedMessageTimeouts = { 
+        // "e43638ce-6aa0-4b85-b27f-e1d07eb678c6": 17
+        // };
+        addedMessageTimeouts[productId] = timeoutId;
     });
 });
 
