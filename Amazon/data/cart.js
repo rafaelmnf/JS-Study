@@ -1,2 +1,28 @@
 export const cart = [
 ];
+
+export function addToCart(productId) {
+    // we create this variable to verify if has item or not (undefined if not)
+    let matchingItem;
+
+    cart.forEach((cartItem) => {
+        if (productId === cartItem.productID) {
+            matchingItem = cartItem;
+        }
+    })
+
+    // We have to convert the string value from DOM to a number
+    const quantitySelector = document.querySelector(
+    `.js-quantity-selector-${productId}`);
+    const quantity = Number(quantitySelector.value);
+
+    if(matchingItem) {
+        matchingItem.quantity += quantity;
+    } else {
+        cart.push({
+        productID: productId,
+        quantity: quantity
+    })
+    }
+    console.log(cart);
+}

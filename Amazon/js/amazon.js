@@ -1,5 +1,12 @@
+// '..' goes outside the current folder
 import { products } from "../data/products.js";
-import { cart } from "../data/cart.js";
+import { cart, addToCart } from "../data/cart.js";
+
+/** If we use POO, we could do:
+    import * as cartObject from '../data/products.js';
+    cartModule.cart
+    cartModule.addToCart('id');
+ */
 
 let productsHtml = '';
 
@@ -59,8 +66,45 @@ products.forEach((product) => {
 
 document.querySelector('.products-grid').innerHTML = productsHtml;
 
+function updateCartQuantity() {
+    let cartQnt = 0;
+
+    cart.forEach((cartItem) => {
+        cartQnt += cartItem.quantity;
+    })
+    document.querySelector('.cart-quantity').innerHTML = cartQnt;
+}
+
 
 const addedMessageTimeouts = {};
+
+function showAddedMessage(productId) {
+
+    const addedHTML = document.querySelector(`.js-added-to-cart-${productId}`);
+    addedHTML.classList.add('added-show');
+
+    // When selecting by [], you get the content of variable
+    const previousTimeoutId = addedMessageTimeouts[productId];
+    // undefined or the number of timeoutId
+    if (previousTimeoutId) {
+    clearTimeout(previousTimeoutId);
+      }
+
+    // gets the id number of that timeout (every click new timerId)
+    const timeoutId = setTimeout(() => {
+        addedHTML.classList.remove('added-show');
+    }, 2000);
+
+    // Save the timeoutId for this product
+    // so we can stop it later if we need to.
+    // addedMessageTimeouts = { 
+    // "e43638ce-6aa0-4b85-b27f-e1d07eb678c6": 17
+    // };
+    // Using'[]' instead of '.' because it is a variable
+    addedMessageTimeouts[productId] = timeoutId;
+}
+
+
 // make a list of all btns with that class, then iterates for all btn to when clicking, do something
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
@@ -70,61 +114,11 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
         // product-id == productId, o DOM junta na hora de identificá-lo como objeto
         const productId = button.dataset.productId;
 
-        // we create this variable to verify if has item or not (undefined if not)
-        let matchingItem;
+        addToCart(productId);
 
-        cart.forEach((item) => {
-            if (productId === item.productID) {
-                matchingItem = item;
-            }
-        })
+        updateCartQuantity(); 
 
-        // We have to convert the string value from DOM to a number
-        const quantitySelector = document.querySelector(
-        `.js-quantity-selector-${productId}`);
-        const quantity = Number(quantitySelector.value);
-
-        if(matchingItem) {
-            matchingItem.quantity += quantity;
-        } else {
-            cart.push({
-            productID: productId,
-            quantity: quantity
-        })
-        }
-        
-        console.log(cart);
-
-        let cartQnt = 0;
-
-        cart.forEach((item) => {
-            cartQnt += item.quantity;
-        })
-
-        document.querySelector('.cart-quantity').innerHTML = cartQnt;
-
-        const addedHTML = document.querySelector(`.js-added-to-cart-${productId}`);
-        addedHTML.classList.add('added-show');
-
-        // When selecting by [], you get the content of variable
-        const previousTimeoutId = addedMessageTimeouts[productId];
-
-        // undefined or the number of timeoutId
-        if (previousTimeoutId) {
-        clearTimeout(previousTimeoutId);
-      }
-
-        // gets the id number of that timeout (every click new timerId)
-        const timeoutId = setTimeout(() => {
-            addedHTML.classList.remove('added-show');
-        }, 2000);
-
-        // Save the timeoutId for this product
-        // so we can stop it later if we need to.
-        // addedMessageTimeouts = { 
-        // "e43638ce-6aa0-4b85-b27f-e1d07eb678c6": 17
-        // };
-        addedMessageTimeouts[productId] = timeoutId;
+        showAddedMessage(productId);
     });
 });
 
