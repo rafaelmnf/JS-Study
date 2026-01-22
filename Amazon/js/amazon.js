@@ -1,6 +1,7 @@
 // '..' goes outside the current folder
 import { products } from "../data/products.js";
 import { cart, addToCart } from "../data/cart.js";
+import { formatCurrency } from "./utils/util.js";
 
 /** If we use POO, we could do:
     import * as cartObject from '../data/products.js';
@@ -31,7 +32,7 @@ products.forEach((product) => {
             </div>
 
             <div class="product-price">
-                $${(product.priceCents / 100).toFixed(2)}
+                $${formatCurrency(product.priceCents)}
             </div>
 
             <div class="product-quantity-container">
