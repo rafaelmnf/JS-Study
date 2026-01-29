@@ -209,3 +209,25 @@
   margin-top: 11px;
   margin-bottom: 15px;
 }
+
+.save-quantity-link {
+  display: none;
+}
+
+.quantity-input {
+  width: 30px;
+  display: none;
+}
+
+/* initial resets the property back to its default value */
+.is-editing-quantity .quantity-input {
+  display: initial;
+}
+
+.is-editing-quantity .save-quantity-link {
+  display: initial;
+}
+
+.js-display-none {
+  display: none;
+}

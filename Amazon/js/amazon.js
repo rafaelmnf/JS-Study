@@ -1,6 +1,6 @@
 // '..' goes outside the current folder
 import { products } from "../data/products.js";
-import { cart, addToCart } from "../data/cart.js";
+import { cart, addToCart, calculateCartQuantity } from "../data/cart.js";
 import { formatCurrency } from "./utils/util.js";
 
 /** If we use POO, we could do:
@@ -68,13 +68,9 @@ products.forEach((product) => {
 document.querySelector('.products-grid').innerHTML = productsHtml;
 
 function updateCartQuantity() {
-    let cartQnt = 0;
-
-    cart.forEach((cartItem) => {
-        cartQnt += cartItem.quantity;
-    })
-    document.querySelector('.cart-quantity').innerHTML = cartQnt;
+    document.querySelector('.js-cart-quantity').innerHTML = calculateCartQuantity();
 }
+updateCartQuantity();
 
 
 const addedMessageTimeouts = {};
