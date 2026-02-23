@@ -182,10 +182,16 @@ function renderOrderSummary() {
       updateDeliveryOption(productId, deliveryOptionId);
       // Here we UPDATE the DATA and REGENERATE all the HTML
       // we need to put all those eventListeners again because html is deleted and replaced 
+      // we get the new data and regenerates it
       renderOrderSummary();
     })
   })
 
 }
 
+
+// MVC (Model View Controller)
+// --> Model = saves and manages the data
+// --> View = takes the data and displays it on the page
+// --> Controller = runs code when interacting with the page
 renderOrderSummary();
