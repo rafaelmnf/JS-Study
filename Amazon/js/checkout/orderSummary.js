@@ -2,6 +2,7 @@ import { cart, removeFromCart, calculateCartQuantity, updateQuantity, updateDeli
 import { products, getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/util.js";
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
+import { renderPaymentSummary } from './paymentSummary.js';
 
 // External Library -> When doing something complicated, search for an external library first
 // Don't have curly brackets beacuse it is a default export
@@ -112,6 +113,7 @@ export function renderOrderSummary() {
         document.querySelector(`.js-cart-item-container-${productId}`).remove();
         updateCartQuantity();
         console.log(cart);
+        renderPaymentSummary();
       });
   });
     
@@ -150,6 +152,7 @@ export function renderOrderSummary() {
       quantityLabel.innerHTML = newQuantity;
 
       updateCartQuantity();
+      renderPaymentSummary();
       
     });
   });
@@ -165,6 +168,7 @@ export function renderOrderSummary() {
       // we need to put all those eventListeners again because html is deleted and replaced 
       // we get the new data and regenerates it
       renderOrderSummary();
+      renderPaymentSummary();
     })
   })
 
