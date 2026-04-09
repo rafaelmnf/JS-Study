@@ -3,14 +3,20 @@ import { products, getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/util.js";
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from './paymentSummary.js';
+import { renderCheckoutHeader } from './checkoutHeader.js';
 
 // External Library -> When doing something complicated, search for an external library first
 // Don't have curly brackets beacuse it is a default export
 import  dayjs  from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
+// Examples
 const today = dayjs();
 const deliveryDate = today.add(7, 'days');
 console.log(deliveryDate.format('dddd, MMMM D'));
+
+const practicing = today.subtract(1, 'month');
+console.log(practicing .format('MMMM, dddd'));
+
 
 
 export function renderOrderSummary() {
@@ -110,19 +116,15 @@ export function renderOrderSummary() {
         removeFromCart(productId);
 
         // removing from DOM with remove(), or we could also create a function to load HTML cart and refresh it everytime we add or delete a product
-        document.querySelector(`.js-cart-item-container-${productId}`).remove();
-        updateCartQuantity();
+        // document.querySelector(`.js-cart-item-container-${productId}`).remove();
+        renderOrderSummary();
+        renderCheckoutHeader();
         console.log(cart);
         renderPaymentSummary();
       });
   });
-    
-    
-  function updateCartQuantity() {
-    let totalQuantity = calculateCartQuantity();
-    document.querySelector('.js-checkout-quantity').innerHTML = `${totalQuantity} items`;
-  }
-  updateCartQuantity();
+
+  renderCheckoutHeader();
 
   document.querySelectorAll('.update-quantity-link').forEach((link) => {
     link.addEventListener('click', () => {
@@ -151,7 +153,7 @@ export function renderOrderSummary() {
       );
       quantityLabel.innerHTML = newQuantity;
 
-      updateCartQuantity();
+      renderCheckoutHeader();
       renderPaymentSummary();
       
     });
