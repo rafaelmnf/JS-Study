@@ -1,4 +1,4 @@
-import { formatCurrency } from "../js/utils/util.js";
+import { formatCurrency } from "../../js/utils/util.js";
 
 // Test Suit
 // 'describe' and 'it' are functions of Jasmine
