@@ -747,3 +747,18 @@ export function getProduct(productId) {
     });
     return matchingProduct;
 }
+
+
+// Build in Objects
+/*
+const date = new Date();
+console.log(date);
+console.log(date.toLocaleDateString()); 
+*/
+
+// More about "This"
+/*
+  1. Inside a method (for an object), it points to the outer oobject
+  2. Inside a function this = undefined. But we can change it using function.call('valueofthis')
+  3. Arrow function, dont change the value of "this"
+*/
