@@ -18,7 +18,6 @@ const practicing = today.subtract(1, 'month');
 console.log(practicing .format('MMMM, dddd'));
 
 
-
 export function renderOrderSummary() {
 
   let cartSummaryHTML = '';
@@ -46,7 +45,7 @@ export function renderOrderSummary() {
                   ${matchingProduct.name}
                 </div>
                 <div class="product-price">
-                  ${formatCurrency(matchingProduct.priceCents)}
+                  ${matchingProduct.getPrice()}
                 </div>
                 <div class="product-quantity">
                   <span>
