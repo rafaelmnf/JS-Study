@@ -25,7 +25,32 @@ class Product {
     return `$${formatCurrency(this.priceCents)}`;
   };
 
+  extraInfoHTML() {
+    return '';
+  }
+
 }
+
+class Clothing extends Product {
+  sizeChartLink;
+
+  constructor(productDetails) {
+    super(productDetails); // Super chama o construtor do pai
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfoHTML() { // Method Overriding
+    // super.extraInfoHTML(); --> Esse chama o contrutor pai
+    // Target _blank open in a new tab
+    return `
+      <a href="${this.sizeChartLink}" target="_blank"> 
+        Size chart
+      </a>
+    `;
+  }
+}
+
+
 
 /*
   const product1 = new Product({
@@ -90,8 +115,8 @@ export const products = [
       "apparel",
       "mens"
     ],
-    type: "clothing",
-    sizeChartLink: "images/clothing-size-chart.png"
+    type: "clothing", // Discriminator Property
+    sizeChartLink: "images/clothing-size-chart.png" 
   },
   {
     id: "54e0eccd-8f36-462b-b68a-8182611d9add",
@@ -706,6 +731,9 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
+  if(productDetails.type === 'clothing') {
+    return new Clothing(productDetails);
+  }
   return new Product(productDetails);
 }); // map itera sobre todos os objetos e retorna um novo array com eles modificados
 
