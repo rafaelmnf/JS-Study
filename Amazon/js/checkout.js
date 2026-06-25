@@ -1,6 +1,6 @@
 import { renderOrderSummary } from './checkout/orderSummary.js';
 import { renderPaymentSummary } from './checkout/paymentSummary.js';
-import { loadProducts } from '../data/products.js';
+import { loadProducts, loadProductsFetch } from '../data/products.js';
 import { loadCart } from '../data/cart.js';
 // import '../data/cart-class.js'; // it runs all the code inside this file, without importing anithing 
 // import '../data/backend-practice.js';
@@ -20,11 +20,7 @@ new Promise((resolve) => { // resolve is a function that let us control when to 
 
 // Promise.all: lets us run multiple promises at the same time and wait for all to finish
 Promise.all([
-    new Promise((resolve) => {
-        loadProducts(() => {
-            resolve('value1'); // podemos passar valores entre os resolves
-        });
-    }), 
+    loadProductsFetch,
     new Promise((resolve) => {
         loadCart(() => {
             resolve();

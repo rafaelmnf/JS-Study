@@ -70,7 +70,34 @@ class Clothing extends Product {
 });
 */
 
+// Fetch() = better way to make HTTP requests
+// Fetch uses Promise
+
 export let products = [];
+
+export function loadProductsFetch() {
+  const promise = fetch('https://supersimplebackend.dev/products').then((response) => { //contains the response of backend
+  // makes a GET HTTP req
+    return response.json(); // .json is asynchronous, it returns a promise. It also does the json.parse
+
+  }).then((productsData) => {
+    products = productsData.map((productDetails) => {
+      if(productDetails.type === 'clothing') {
+        return new Clothing(productDetails);
+      }
+      return new Product(productDetails);
+    }); // map itera sobre todos os objetos e retorna um novo array com eles modificados;
+    console.log('loaded products');
+  })
+
+  return promise; // Ao retornar uma promise, vc pode usar o .then para guiar por mais passos
+  // Como retornamos com o fetch uma Promise. Ao usar o Promises.all, podemos esperar por todas as ações antes de seguir
+}
+
+// loadProductsFetch().then(() => {
+//   console.log('next step')
+// });
+
 
 export function loadProducts(func) {
   const xhr = new XMLHttpRequest();
