@@ -88,6 +88,8 @@ export function loadProductsFetch() {
       return new Product(productDetails);
     }); // map itera sobre todos os objetos e retorna um novo array com eles modificados;
     console.log('loaded products');
+  }).catch((error) => { // for handling errors, we use another property of promises -> catch
+    console.log('Unexpected error');
   })
 
   return promise; // Ao retornar uma promise, vc pode usar o .then para guiar por mais passos
@@ -114,10 +116,14 @@ export function loadProducts(func) {
     func();
   })
 
+  xhr.addEventListener('error', (error) => {
+    console.log('Unexpected error');
+  });
+
+
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }
-
 
 // export const products = [
 //   {

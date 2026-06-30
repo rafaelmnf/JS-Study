@@ -9,18 +9,25 @@ import { loadCart } from '../data/cart.js';
 // async makes a function return a promise
 
 async function loadPage() {
-    console.log('load page');
+    try {
+        // throw 'error1';  // it manually creates an error, and skips to catch ignoring other lines after it
+        // await: lets us wait for a promise to finish, before going to next line
+        await loadProductsFetch(); // Vai esperar acabar a promise antes de ir para a proxima linha 
+        // We can oly use await while inside an async function 
 
-    // await: lets us wait for a promise to finish, before going to next line
-    await loadProductsFetch(); // Vai esperar acabar a promise antes de ir para a proxima linha 
-    // We can oly use await while inside an async function 
+        const resolved = await new Promise((resolve, reject) => {
+            // throw 'error2' // it will go to catch and wont load cart
+            loadCart((error) => {
+                // reject let us create an error in the future. We cant use normal throw
+                // reject('error3')
+                resolve('value3');
+            });
+        })//.then((value) = {}) -> instead of doing .then, await returns the value inside resolve
 
-    const resolved = await new Promise((resolve) => {
-        loadCart(() => {
-            resolve('value3');
-        });
-    })//.then((value) = {}) -> instead of doing .then, await returns the value inside resolve
-
+    } catch (error) {
+        console.log(`Unexpected error: ${error}`)
+    }
+    
     renderOrderSummary();
     renderPaymentSummary();
 
