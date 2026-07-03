@@ -1,5 +1,13 @@
 // Backend is another computer that manages our data
 // Frontend send messages to the backend via HTTP
+
+/** There are 4 types of request:
+ *  GET = get something frm the backend
+ *  POST = create something --> send data to the backend
+ *  PUT = update something
+ *  DELETE = delete something
+ */
+
 const xhr = new XMLHttpRequest(); // Creates a new HTTP message to send to the backend. Message = Request
 
 // Quando mandamos um request para o servidor backend, demora um tempinho até a informação atravessar ambas as partes, então, deve-se esperar por um evento para que acione

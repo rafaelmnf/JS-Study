@@ -7,12 +7,12 @@ function Cart(localStorageKey) {
             this.cartItems = JSON.parse(localStorage.getItem(localStorageKey)) ||
             [ 
                 {
-                productID: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+                productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
                 quantity: 3,
                 deliveryOptionId: '1'
                 },
                 {
-                productID: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+                productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
                 quantity: 2,
                 deliveryOptionId: '2'
                 }   
@@ -28,7 +28,7 @@ function Cart(localStorageKey) {
             let matchingItem;
 
             this.cartItems.forEach((cartItem) => {
-                if (productId === cartItem.productID) {
+                if (productId === cartItem.productId) {
                     matchingItem = cartItem;
                 }
             })
@@ -43,7 +43,7 @@ function Cart(localStorageKey) {
                 matchingItem.quantity += quantity;
             } else {
                 this.cartItems.push({
-                productID: productId,
+                productId: productId,
                 quantity: quantity,
                 deliveryOptionId: '1'
             })
@@ -55,7 +55,7 @@ function Cart(localStorageKey) {
 
         removeFromCart (productId) {
         this.cartItems = this.cartItems.filter((cartItem) => {
-            return (!(cartItem.productID == productId));
+            return (!(cartItem.productId == productId));
         })
         this.saveToStorage();
         },
@@ -70,7 +70,7 @@ function Cart(localStorageKey) {
 
         updateQuantity(productId, newQuantity) {
             this.cartItems.forEach((item) => {
-                if(item.productID === productId) {
+                if(item.productId === productId) {
                     item.quantity = newQuantity;
                 }
             });
@@ -82,7 +82,7 @@ function Cart(localStorageKey) {
             let matchingItem;
 
             this.cartItems.forEach((cartItem) => {
-                if (productId === cartItem.productID) {
+                if (productId === cartItem.productId) {
                     matchingItem = cartItem;
                 }
             });

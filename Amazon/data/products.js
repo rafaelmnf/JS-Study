@@ -78,7 +78,8 @@ export let products = [];
 export function loadProductsFetch() {
   const promise = fetch('https://supersimplebackend.dev/products').then((response) => { //contains the response of backend
   // makes a GET HTTP req
-    return response.json(); // .json is asynchronous, it returns a promise. It also does the json.parse
+    
+  return response.json(); // .json is asynchronous, it returns a promise. It also does the json.parse
 
   }).then((productsData) => {
     products = productsData.map((productDetails) => {
