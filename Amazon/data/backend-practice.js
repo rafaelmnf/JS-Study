@@ -33,3 +33,8 @@ xhr.send();
 // Types of data that backend can respond: Text, JSON, HTML, Image
 
 // Quando escrevemos a URL no navegador, fazemos uma requisição GET também, ai vai aparecer a resposta no próprio navegador (tela)
+
+// URL parameters: let us save data directly in the URL
+// localhost/URL?orderId=123 --> o '?' significa que estamos adicionando um parâmetro de URL.
+// O lado esquerdo é a propriedade (orderId) e o direito é valor (123)
+// We can also save multiple params in the url using '&'

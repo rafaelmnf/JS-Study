@@ -88,5 +88,14 @@
         </div>
       </div>
     </div>
+
+    <script>
+      // This object analises the parts of URL and brings it to the variable url
+      const url = new URL(window.location.href);
+      // "url param" is also called "search param"
+      // localhost/tracking.html?orderId=123&productId=456
+      console.log(url.searchParams.get('orderId'));
+      console.log(url.searchParams.get('productID'));
+    </script>
   </body>
 </html>
